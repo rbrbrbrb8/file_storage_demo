@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: people-course-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: people-course-mongo
+  template:
+    metadata:
+      labels:
+        app: people-course-mongo
+    spec:
+      containers:
+        - name: people-course-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: people-course-mongo-service
+spec:
+  selector:
+    app: people-course-mongo
+  ports:
+    - name: database
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

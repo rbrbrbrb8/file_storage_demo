@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: people-course-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: people-course
+  template:
+    metadata:
+      labels: 
+        app: people-course
+    spec:
+      containers:
+        - name: people-course
+          image: protoimages/people-course-service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: people-course-service
+spec:
+  selector:
+    app: people-course
+  ports:
+    - name: people-course
+      protocol: TCP
+      port: 3100
+      targetPort: 3100
+    

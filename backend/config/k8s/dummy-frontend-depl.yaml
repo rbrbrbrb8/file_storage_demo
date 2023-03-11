@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-frontend-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy-frontend
+  template:
+    metadata:
+      labels:
+        app: dummy-frontend
+    spec:
+      containers:
+        - name: dummy-frontend
+          image: protoimages/dummy-frontend-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-frontend-service
+spec:
+  selector:
+    app: dummy-frontend
+  ports:
+    - name: dummy-frontend
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
