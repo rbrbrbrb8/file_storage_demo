@@ -1,0 +1,30 @@
+.container1 {
+  background-color: #E7F3D6;
+  width: 70.8vw;
+  height: 37.8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 7%;
+  color: black;
+}
+.peopleList{
+  max-height: 37.8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;  
+}
+::-webkit-scrollbar{
+  width: 0;
+  background: transparent;
+}
+
+.headline {
+  font-size: 36px !important;    
+}

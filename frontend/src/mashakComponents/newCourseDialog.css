@@ -1,0 +1,25 @@
+.dialogTitelSt {
+    background-color: #E6E2BE;
+}
+.dialogContentSt {
+    background-color: #E6E2BE;
+}
+.fullDialogSt {
+    border: red dotted 2px;
+    border-radius: 45px;
+}
+.dialogFormContainer {
+    display: flex;
+    flex-direction: column; 
+    min-width: 23vw;   
+}
+.formElement1 {
+    margin-top: 15px !important;
+    direction: rtl !important;    
+}
+.textmrgDown {
+    margin-bottom: 25px !important;
+}
+.titele5size {
+    font-size: 24px !important;
+}

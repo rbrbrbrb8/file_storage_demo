@@ -1,0 +1,21 @@
+.allCard1 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 58vw; 
+    min-height: 3vw !important;
+    height: 3vw !important; 
+    border-radius: 8px !important;
+    margin-top: 0.5vw;
+  }
+  .gridOri {
+    flex-direction: row-reverse !important;
+  }
+  .malshabName {
+    text-align: end;
+  }
+  .reversIcon {
+    rotate: 180deg !important;
+  }
+  

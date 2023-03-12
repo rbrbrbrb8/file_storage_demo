@@ -1,0 +1,23 @@
+.cardAvatar {
+  background-color: #ccff66 !important;
+  padding: 5px !important;
+  margin: 0px !important;
+}
+.allCard {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 58vw;
+  min-width: 490px;
+  min-height: 4.5vw;  
+  border-radius: 45px !important;
+  margin-top: 1vw;
+}
+.reversIcon {
+  rotate: 180deg !important;
+}
+.CardHeder {
+  
+  margin: 0px !important;
+}

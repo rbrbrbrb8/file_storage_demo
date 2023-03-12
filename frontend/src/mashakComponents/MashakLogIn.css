@@ -1,0 +1,24 @@
+.loginS{
+    background-color: rgba(231, 243, 214,0.8);
+    width: 23.8vw;
+    height: 31.8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 12px;
+    border-radius: 6%;
+}
+.logInForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 29vw;
+    padding: 12px;
+}
+.TextForm{
+    border: 3px dotted red;
+    border-radius: 30%;
+}
+.logInText{
+    color: black;    
+}

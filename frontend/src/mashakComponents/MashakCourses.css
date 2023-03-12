@@ -1,0 +1,41 @@
+.CoursesContainer {
+    background-color: #E7F3D6;
+    min-width: 610px;
+    min-height: 40vw;
+    width: 70.8vw;
+    height: 37.8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 12px;
+    border-radius: 7%;
+    color: black;
+}
+.headline {
+    font-size: 36px !important;    
+}
+.coursesDimen {
+  width: 70.8vw;
+  min-height: 22.5vw;
+  display: flex;
+  margin-top: 0.5vw;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.buttonCont {
+  display: flex;
+  width: 67.8vw;
+  height: 3vw;
+  justify-content: start !important;
+  flex-direction: row;
+}
+.iconMasCou {
+  color: #80A863;
+}
+.border123 {
+  border: #80A863 solid 2px;
+}
