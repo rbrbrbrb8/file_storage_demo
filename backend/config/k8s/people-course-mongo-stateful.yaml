@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: people-course-mongo-depl
+  name: people-course-mongo-stateful
 spec:
+  serviceName: people-course-mongo-service
   replicas: 1
   selector:
     matchLabels:
@@ -15,12 +16,27 @@ spec:
       containers:
         - name: people-course-mongo
           image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: pvc
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 500Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: people-course-mongo-service
 spec:
+  clusterIP: None
   selector:
     app: people-course-mongo
   ports:

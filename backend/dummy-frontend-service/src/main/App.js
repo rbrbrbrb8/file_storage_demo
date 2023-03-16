@@ -12,6 +12,7 @@ function App() {
 
     const formData = new FormData();
     formData.append("image", file)
+    formData.append("fileData",JSON.stringify({id:'121212121',fileType:'file69'}))
     const res = await axios.post("/s3/upload", formData, { headers: { 'Content-Type': 'multipart/form-data' } })
     console.log(res);
   }

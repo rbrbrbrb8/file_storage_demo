@@ -3,7 +3,7 @@ const courseHandler = require('../../handlers/course/courseHandler');
 const peopleHandler = require('../../handlers/people/peopleHandler');
 const courseRouter = express.Router();
 
-courseRouter.post('/', async (req, res) => { //the request gets deadline,open day,list of people,and name and creates a new course document in db
+courseRouter.post('/new', async (req, res) => { //the request gets deadline,open day,list of people,and name and creates a new course document in db
   const { people, name, deadline, startDate } = req.body;
   const peopleIds = (await peopleHandler.uploadPeople(people)).map(person => person._id);
   const course = {
