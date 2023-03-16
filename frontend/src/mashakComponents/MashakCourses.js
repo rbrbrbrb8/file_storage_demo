@@ -4,8 +4,13 @@ import './MashakCourses.css';
 
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import NewCourseDialog from './newCourseDialog';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
+import { useUser } from './UserContext';
 
-const exampCourses = [
+const url1 = 'https://jsonplaceholder.typicode.com/posts';
+
+const exampCourses2= [
   {
     name: "טרצ מסוג א",
     numFemale: 16,
@@ -71,18 +76,30 @@ const exampCourses = [
   }
 ];
 
+
 const MashakCourses = () => {
+  const [exampCourses, setCourses] =useState(null);
+
+  useEffect(() =>{
+    Axios.get(url1)
+    .then(res => {
+      console.log(res.data)
+      setCourses(exampCourses2)
+    })
+    .catch( err => {console.log(err)})
+  },[])
+
   return ( 
     <Box className="CoursesContainer">
       <Typography variant='h2' className="headline">
         הקורסים שלי
       </Typography>
-      <Box className='coursesDimen'>
+      {exampCourses && <Box className='coursesDimen'>
         {
           exampCourses.map((course) => (
             <CourseCard key={course.id} details={course} />
           ))}
-      </Box>
+      </Box>}
         <NewCourseDialog/>
         
     </Box>

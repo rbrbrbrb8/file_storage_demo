@@ -1,19 +1,21 @@
 import './App.css';
-
 import LogIn from './components/LogIn';
 import MashakLogIn from './mashakComponents/MshakLogIn';
-
 import MlAddFiles from './components/MlAddFiles';
-
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
 import MashakCourses from './mashakComponents/MashakCourses';
 import PeopleInCourse from './mashakComponents/peopleInCourse';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { UserProvider } from './mashakComponents/UserContext';
+
+
 
 
 function App() {
 
-  const [approvedUser, setApprovedUser] = useState();
+  
+  
+  const [approvedUser, setApprovedUser] = useState("sdfsf");
   
 
   return (
@@ -28,13 +30,19 @@ function App() {
           </header>
         </div>
       </Router> */}
-      <div className="App">
-        <header className="App-header2">
-          {/* <MashakLogIn /> */}
-          <MashakCourses/>
-          {/* <PeopleInCourse /> */}
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header2">
+          <UserProvider>
+            <Routes>                         
+              <Route exact path='/MASHAKLogIn' element={<MashakLogIn/>} />
+              <Route exact path='/MASHAKCourses' element={<MashakCourses/>} />
+              <Route exact path='/Course' element={<PeopleInCourse/>} />            
+            </Routes>
+          </UserProvider>
+          </header>
+        </div>
+      </Router>
     </div>
   );
 }

@@ -41,7 +41,7 @@ const CourseCard = ({details}) => {
       </CardContent>
       
       <CardActions>
-        <IconButton  aria-label="delete">
+        <IconButton  aria-label="delete" >
           <SendRoundedIcon className='reversIcon'  />
         </IconButton>
         
