@@ -4,7 +4,8 @@
     justify-content: space-between;
     align-items: center;
     width: 58vw; 
-    min-height: 3vw !important;
+    min-width: 538px !important;
+    min-height: 32px;
     height: 3vw !important; 
     border-radius: 8px !important;
     margin-top: 0.5vw;

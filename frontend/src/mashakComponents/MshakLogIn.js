@@ -1,10 +1,10 @@
 import "./MashakLogIn.css";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { createContext, useContext, useState } from "react";
-import axios from "axios";
+import  axios, { Axios } from "axios";
 import { UserContext } from "../App";
 import { useUser, useUserUpdate } from "./UserContext";
-const url = "the best url?";
+const url = 'https://jsonplaceholder.typicode.com/posts';
 
 
 const MashakLogIn = ({ setApprovedUser }) => {
@@ -21,14 +21,13 @@ const MashakLogIn = ({ setApprovedUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(url, {
-        userName: userName,
-        password: password,
-      });}
-    catch (error) {
-      //console.log(error);
-    }
+    axios.post(url , {
+      userName: userName,
+      password: password
+    })
+    .then(res => console.log('posting...', res))
+    .catch(err => console.log(err))
+    
   };
 
   return (
@@ -58,7 +57,6 @@ const MashakLogIn = ({ setApprovedUser }) => {
       <Typography variant="h5" className="logInText">
         מערכת הטפסים של חיל המודיעין
       </Typography>
-      <Typography variant="h4">{user}</Typography>
     </Box>
   );
 };

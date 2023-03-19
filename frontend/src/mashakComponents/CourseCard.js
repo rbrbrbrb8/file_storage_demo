@@ -1,12 +1,20 @@
 import {Avatar, Card, CardActions, CardContent, CardHeader, IconButton, Typography } from '@mui/material'
 import './CourseCard.css';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import axios, { Axios } from 'axios';
 
-
+const courseReminderUrl ='https://jsonplaceholder.typicode.com/posts'
 
 const CourseCard = ({details}) => {
 
   const sumOfParticipants = details.numFemale +details.numMale;
+  const handleSendReminder =() =>{
+    axios.post(courseReminderUrl, {
+      courseId: details.id
+    })
+    .then(res => {console.log("sending reminders for", details.name, "course")})
+    .catch( err => console.log(err));
+  }
   return (  
     <Card  className='allCard'>
       <CardHeader className='CardHeder'
@@ -41,7 +49,7 @@ const CourseCard = ({details}) => {
       </CardContent>
       
       <CardActions>
-        <IconButton  aria-label="delete" >
+        <IconButton  aria-label="delete" onClick={handleSendReminder} >
           <SendRoundedIcon className='reversIcon'  />
         </IconButton>
         

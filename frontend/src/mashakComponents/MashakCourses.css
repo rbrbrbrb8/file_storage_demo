@@ -1,9 +1,9 @@
 .CoursesContainer {
     background-color: #E7F3D6;
-    min-width: 610px;
-    min-height: 40vw;
     width: 70.8vw;
+    min-width: 654px;
     height: 37.8vw;
+    min-height: 349px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -17,6 +17,7 @@
 }
 .coursesDimen {
   width: 70.8vw;
+  min-width: 654px;
   min-height: 22.5vw;
   display: flex;
   margin-top: 0.5vw;

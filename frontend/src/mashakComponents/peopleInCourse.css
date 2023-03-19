@@ -1,7 +1,9 @@
 .container1 {
   background-color: #E7F3D6;
   width: 70.8vw;
+  min-width: 654px;
   height: 37.8vw;
+  min-height: 349px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -13,6 +15,7 @@
 }
 .peopleList{
   max-height: 37.8vw;
+  min-height: 295px;
   display: flex;
   flex-direction: column;
   justify-content: start;

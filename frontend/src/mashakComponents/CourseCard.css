@@ -10,14 +10,13 @@
   align-items: center;
   width: 58vw;
   min-width: 490px;
-  min-height: 4.5vw;  
+  min-height: 40px;  
   border-radius: 45px !important;
-  margin-top: 1vw;
+  margin-top: 0.5vw;
 }
 .reversIcon {
   rotate: 180deg !important;
 }
-.CardHeder {
-  
+.CardHeder {  
   margin: 0px !important;
 }

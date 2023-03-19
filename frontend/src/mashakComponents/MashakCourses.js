@@ -5,7 +5,7 @@ import './MashakCourses.css';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import NewCourseDialog from './newCourseDialog';
 import { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios, { Axios } from 'axios';
 import { useUser } from './UserContext';
 
 const url1 = 'https://jsonplaceholder.typicode.com/posts';
@@ -81,7 +81,7 @@ const MashakCourses = () => {
   const [exampCourses, setCourses] =useState(null);
 
   useEffect(() =>{
-    Axios.get(url1)
+    axios.get(url1)
     .then(res => {
       console.log(res.data)
       setCourses(exampCourses2)
