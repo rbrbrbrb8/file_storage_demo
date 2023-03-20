@@ -1,0 +1,33 @@
+.dialogTitelSt {
+    background-color: #E6E2BE;
+}
+.dialogContentSt {
+    background-color: #E6E2BE;
+}
+.dialogFormContainer {
+    display: flex;
+    flex-direction: column; 
+    min-width: 23vw;   
+}
+.formElement1 {
+    margin-top: 13px !important;
+    direction: rtl !important;    
+}
+.formButton {
+    margin: 10px !important;
+}
+.textmrgDown {
+    margin-bottom: 20px !important;
+}
+.titele5size {
+    font-size: 24px !important;
+}
+.FileTypeImage {
+    width: 2.5vw;
+    height: 2.5vw;
+}
+.showFile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
