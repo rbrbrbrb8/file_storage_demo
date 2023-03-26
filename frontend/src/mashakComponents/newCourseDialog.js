@@ -2,14 +2,33 @@ import {Box,  Button,  Dialog,  DialogContent,  DialogContentText,  DialogTitle,
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { useState } from 'react';
 import { FileUploader } from "react-drag-drop-files";
+import axios, { Axios } from 'axios';
 import excelImg from '../images/excelIcon1.png'
 import './newCourseDialog.css';
+
+const newCourseUrl = 'http://pls-work.pls/POST/api/course/new';
+const workingUrl = 'https://jsonplaceholder.typicode.com/posts';
 
 const NewCourseDialog = ({open}) => {
 
   const [dialogState, setDialogState] = useState(false);
-  const [file, setFile] = useState(null);
   const [showFiles, setShoeFiles] =useState(false);
+
+  const [courseName,setCourseName] = useState(null);
+  const [openningDate, setOpenningDate] = useState(null);
+  const [lastSubmitDate,setLastSubmitDate] = useState(null);
+  const [file, setFile] = useState(null);
+
+  const handleSubmitClick = () =>{
+    axios.post(newCourseUrl, {
+      peopleFile:file,
+      name: courseName,
+      startDate: openningDate,
+      deadline: lastSubmitDate
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
 
   const handleClose = () =>{
     setDialogState(false);
@@ -20,7 +39,7 @@ const NewCourseDialog = ({open}) => {
     if (file1) {
       setFile(file1);
       setShoeFiles(true);
-      console.log(file.type);
+      console.log(file1);
     }       
   };
 
@@ -47,18 +66,18 @@ const NewCourseDialog = ({open}) => {
         </DialogTitle>
         <DialogContent className='dialogContentSt'>
           <Box className="dialogFormContainer ">
-            <TextField className='formElement1'  type="text"  />
+            <TextField className='formElement1' onChange={(e) => setCourseName(e.target.value)} type="text"  />
             <Typography variant='body2' align='right'>שם קורס</Typography>
 
-            <TextField type="date"   className='formElement1' />
+            <TextField type="date"  onChange={(e) => setOpenningDate(e.target.value)} className='formElement1' />
             <Typography variant='body2' align='right'>תאריך פתיחה</Typography>
 
-            <TextField type="date"  className='formElement1' />
+            <TextField type="date" onChange={(e) => setLastSubmitDate(e.target.value)} className='formElement1' />
             <Typography variant='body2' className='textmrgDown' align='right'>תאריך אחרון להעלאת קבצים</Typography>
 
-            {!showFiles && <FileUploader  onDrop={handleDropFile} handleChange={handleChangeDrop} label={"אקסל של מגניבים"} hoverTitle="העלה" name="file" types={fileTypes} />}
+            { <FileUploader  onDrop={handleDropFile} handleChange={handleChangeDrop} label={"אקסל של מגניבים"} hoverTitle="העלה" name="file" types={fileTypes} />}
             {showFiles && <Box className='showFile'><Typography>{file.name}</Typography> <img src={excelImg} className='FileTypeImage' /></Box> }
-            <Button variant="contained" className='formButton'>Contained</Button>
+            <Button variant="contained" type='submit' onClick={handleSubmitClick} className='formButton'>הוסף קורס </Button>
             
           </Box>
         </DialogContent>

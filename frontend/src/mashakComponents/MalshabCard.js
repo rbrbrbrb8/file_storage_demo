@@ -12,34 +12,39 @@ import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import SignalCellularNoSimRoundedIcon from '@mui/icons-material/SignalCellularNoSimRounded';
 import axios, { Axios } from 'axios';
 
-const imageUrl = 'https://jsonplaceholder.typicode.com/users';
-const kevaUrl = 'https://jsonplaceholder.typicode.com/users';
-const a16Url = 'https://jsonplaceholder.typicode.com/users';
-const reminderUrl = 'sendreminder'
+const getFileUrl = 'http://pls-work.pls/GET/s3/single'
+const reminderUrl = 'http://pls-work.pls/POST/gmail/sendMail'
 
 const MalshabCard = ({malshab}) => {
 
   const makshabId=malshab.id;
+
+  //image
   const handleImageClick = ()  =>{
-    axios.get(imageUrl, {makshabId})
+    axios.get(getFileUrl, {id:makshabId, type:"image"})
     .then( res => {
       console.log(res, 'open image')
     })
     .catch(err => console.log(err))
+    console.log( 'open image e')
   }
+  //keva
   const handleKevaClick = ()  =>{
-    axios.get(kevaUrl, {makshabId})
+    axios.get(getFileUrl, {id:makshabId, type:"keva"})
     .then( res => {
       console.log(res, 'open keva form')
     })
     .catch(err => console.log(err))
+    console.log( 'open keva e')
   }
+  //a16
   const handleA16Click = ()  =>{
-    axios.get(a16Url, {makshabId})
+    axios.get(getFileUrl, {id:makshabId, type:"a16"})
     .then( res => {
       console.log(res, 'open a16 form')
     })
     .catch(err => console.log(err))
+    console.log('open a16 e')
   }
 
   const handlesendReminder = () => {

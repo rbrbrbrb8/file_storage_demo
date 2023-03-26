@@ -4,11 +4,15 @@ import { createContext, useContext, useState } from "react";
 import  axios, { Axios } from "axios";
 import { UserContext } from "../App";
 import { useUser, useUserUpdate } from "./UserContext";
-const url = 'https://jsonplaceholder.typicode.com/posts';
+import { useNavigate } from "react-router-dom";
+const url = 'https://jsonplaceholder.typicode.com/posts';//should be users api that will be implemented
 
 
 const MashakLogIn = ({ setApprovedUser }) => {
-  //onst navigate = useNavigate();
+
+  const navigate = useNavigate()
+  const passOk = true;
+
   const [userName, setId] = useState();
   const [password, setPassword] = useState();
 
@@ -25,9 +29,15 @@ const MashakLogIn = ({ setApprovedUser }) => {
       userName: userName,
       password: password
     })
-    .then(res => console.log('posting...', res))
+    .then(res => {
+      console.log('posting...', res)
+      
+      
+    })
     .catch(err => console.log(err))
-    
+    if (passOk) {
+      navigate('/MASHAKCourses')  
+    }
   };
 
   return (

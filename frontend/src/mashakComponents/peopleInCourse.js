@@ -124,25 +124,27 @@ const peopleInCourseArr1 = [
   }
   
 ]
-const urlPeople='https://jsonplaceholder.typicode.com/albums';
+const urlPeople='http://pls-work.pls/GET/api/people/many';
 
-const PeopleInCourse = () => {
+const PeopleInCourse = ({courseInUse}) => {
   const [peopleInCourseArr, setPeopleInCourse] = useState(null);
 
   useEffect(() => {
     
-    axios.get(urlPeople)
+    axios.get(urlPeople, {IdArry: courseInUse.people})
     .then(res => {
-      console.log(res.data);
-      setPeopleInCourse(peopleInCourseArr1);
+      console.log(res.data );
+      //setPeopleInCourse(res.data);  
     })
     .catch(err => console.log(err));
+    setPeopleInCourse(peopleInCourseArr1);
+    console.log(courseInUse,"dsfsd");
   }, [])
 
   return (  
     <Box className="container1">
       <Typography className='headline'>
-        המלשבים של קורס
+        המלשבים של {courseInUse.name}
       </Typography>
       {peopleInCourseArr && <Box className="peopleList">
         {

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios';
 import { useUser } from './UserContext';
 
-const url1 = 'https://jsonplaceholder.typicode.com/posts';
+const allCoursesUrl = 'http://pls-work.pls/GET/api/course/all';
 
 const exampCourses2= [
   {
@@ -18,7 +18,8 @@ const exampCourses2= [
     keva: 17,
     a16: 8,
     images: 24,
-    id:1
+    id:1,
+    people: [2,4,5,3,324,547,1234,54376]
   },
   {
     name: "טרצ מסוג א",
@@ -36,7 +37,8 @@ const exampCourses2= [
     keva: 17,
     a16: 8,
     images: 24,
-    id:8
+    id:8,
+    people: [2,4,5,3,324,547,1234,54376]
   },
   {
     name: "טרצ מסוג א",
@@ -45,7 +47,8 @@ const exampCourses2= [
     keva: 17,
     a16: 8,
     images: 24,
-    id:324234
+    id:324234,
+    people: [2,4,5,3,324,547,1234,54376]
   },
   {
     name: "טרצ מסוג א",
@@ -54,7 +57,8 @@ const exampCourses2= [
     keva: 17,
     a16: 8,
     images: 24,
-    id:12445
+    id:12445,
+    people: [2,4,5,3,324,547,1234,54376]
   },
   {
     name: "טרצ מסוג א",
@@ -63,7 +67,8 @@ const exampCourses2= [
     keva: 17,
     a16: 8,
     images: 24,
-    id:3459790
+    id:3459790,
+    people: [2,4,5,3,324,547,1234,54376]
   },
   {
     name: "טרצ מסוג ב",
@@ -72,21 +77,56 @@ const exampCourses2= [
     keva: null,
     a16: 2,
     images: 7,
-    id: 2
+    id: 2,
+    people: [2,4,5,3,324,547,1234,54376]
+  },
+  {
+    name: "טרצ מסוג ב",
+    numFemale: 4,
+    numMale: 8,
+    keva: null,
+    a16: 2,
+    images: 7,
+    id: 2,
+    people: [2,4,5,3,324,547,1234,54376]
+  },
+  {
+    name: "טרצ מסוג ב",
+    numFemale: 4,
+    numMale: 8,
+    keva: null,
+    a16: 2,
+    images: 7,
+    id: 2,
+    people: [2,4,5,3,324,547,1234,54376]
+  },
+  {
+    name: "טרצ מסוג ג",
+    numFemale: 12,
+    numMale: 9,
+    keva: 5,
+    a16: 2,
+    images: 7,
+    id: 2,
+    people: [2,4,5,3,324,547,1234,54376]
   }
 ];
 
 
-const MashakCourses = () => {
+const MashakCourses = ({setCourseInUse}) => {
   const [exampCourses, setCourses] =useState(null);
-
+  const cardClick = (course) => {
+    console.log(course.people)
+  }
   useEffect(() =>{
-    axios.get(url1)
+    axios.get(allCoursesUrl)
     .then(res => {
-      console.log(res.data)
-      setCourses(exampCourses2)
+      console.log(res.data);
+      //setCourses(res.data);
+      
     })
     .catch( err => {console.log(err)})
+    setCourses(exampCourses2);
   },[])
 
   return ( 
@@ -97,7 +137,7 @@ const MashakCourses = () => {
       {exampCourses && <Box className='coursesDimen'>
         {
           exampCourses.map((course) => (
-            <CourseCard key={course.id} details={course} />
+            <CourseCard key={course.id} details={course} setCourseInUse={setCourseInUse} />
           ))}
       </Box>}
         <NewCourseDialog/>

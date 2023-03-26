@@ -16,7 +16,7 @@ function App() {
   
   
   const [approvedUser, setApprovedUser] = useState("sdfsf");
-  
+  const [courseInUse, setCourseInUse] = useState(null);
 
   return (
     <div className='stam'>
@@ -36,8 +36,8 @@ function App() {
           <UserProvider>
             <Routes>                         
               <Route exact path='/MASHAKLogIn' element={<MashakLogIn/>} />
-              <Route exact path='/MASHAKCourses' element={<MashakCourses/>} />
-              <Route exact path='/Course' element={<PeopleInCourse/>} />            
+              <Route exact path='/MASHAKCourses' element={<MashakCourses setCourseInUse={setCourseInUse}/>} />
+              <Route exact path='/Course' element={<PeopleInCourse courseInUse={courseInUse} />} />            
             </Routes>
           </UserProvider>
           </header>

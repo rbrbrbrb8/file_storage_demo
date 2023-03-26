@@ -14,9 +14,9 @@ export function UserProvider({children}) {
   const [loggedUser, setLoggedUser] = useState("sfdfs");
 
   function setUser(str1) {
-    setLoggedUser(str1);
-    
+    setLoggedUser(str1);    
   }
+  
   return (
     <UserContext.Provider value={loggedUser}>
       <UserUpdateContext.Provider value={setUser}>
