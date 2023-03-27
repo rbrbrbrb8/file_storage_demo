@@ -30,7 +30,7 @@
 }
 .showFile {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse !important;
     justify-content: start;
     border: 0.5px black solid;
     margin-top: 3px;

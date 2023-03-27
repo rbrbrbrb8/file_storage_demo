@@ -15,10 +15,10 @@ const CourseCard = ({details, setCourseInUse}) => {
   
     axios.post(courseReminderUrl, {
     courseId: details.id      
-  })
-  .then(res => {console.log("sending reminders for", details.name, "course")})
-  .catch( err => console.log(err));
-  console.log(details.people);
+    })
+    .then(res => {console.log("sending reminders for", details.name, "course")})
+    .catch( err => console.log(err));
+    console.log(details.people);
   }
 
   const handleAvatarClick = () => {

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios';
 import { useUser } from './UserContext';
 
-const allCoursesUrl = 'http://pls-work.pls/GET/api/course/all';
+const allCoursesUrl = 'http://localhost:3100/pls-work.pls/GET/api/course/all';
 
 const exampCourses2= [
   {
@@ -77,7 +77,7 @@ const exampCourses2= [
     keva: null,
     a16: 2,
     images: 7,
-    id: 2,
+    id: 42342,
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
@@ -87,7 +87,7 @@ const exampCourses2= [
     keva: null,
     a16: 2,
     images: 7,
-    id: 2,
+    id: 325235,
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
@@ -97,7 +97,7 @@ const exampCourses2= [
     keva: null,
     a16: 2,
     images: 7,
-    id: 2,
+    id: 23523,
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
@@ -107,7 +107,7 @@ const exampCourses2= [
     keva: 5,
     a16: 2,
     images: 7,
-    id: 2,
+    id: 32525,
     people: [2,4,5,3,324,547,1234,54376]
   }
 ];
@@ -122,7 +122,7 @@ const MashakCourses = ({setCourseInUse}) => {
     axios.get(allCoursesUrl)
     .then(res => {
       console.log(res.data);
-      //setCourses(res.data);
+      setCourses(res.data);
       
     })
     .catch( err => {console.log(err)})

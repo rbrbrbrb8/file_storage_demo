@@ -2,7 +2,8 @@ import './LogIn.css';
 import {Box, Button, TextField, Typography } from '@mui/material'
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-
+import axios, { Axios } from 'axios';
+const malshabLogInUrl = 'https://jsonplaceholder.typicode.com/users'
 
 const LogIn = ({setApprovedUser}) => {
 
@@ -39,9 +40,15 @@ const LogIn = ({setApprovedUser}) => {
   const navigate = useNavigate();
   const [id, setId] = useState();
   const [password, setPassword] = useState();
+
   const handleSubmit = (e) =>{
     e.preventDefault();    
-
+    axios.post(malshabLogInUrl , {
+      id: id,
+      password: password
+    })
+    .then( res => {console.log(res)})
+    .catch(err => console.log(err));
     users.forEach(user => {
       if (user.id == id && user.password == password) {
         setApprovedUser(user);        
@@ -52,6 +59,7 @@ const LogIn = ({setApprovedUser}) => {
   }
 	return (
 		<Box className="loginS">
+      <Typography variant='h3'className='logInText'>log in</Typography>
       <form onSubmit={handleSubmit} className="logInForm">
         <TextField
           className="TextForm"
@@ -68,9 +76,9 @@ const LogIn = ({setApprovedUser}) => {
           onChange={(e) => {setPassword(e.target.value)} }
         />
           
-        <Button type='submit' variant="contained">הכנס</Button>
+        <Button type='submit' sx={{bgcolor:'secondary.main'}} variant="contained">הכנס</Button>
       </form>		
-			<Typography variant='h5' className='logInText'>מערכת הטפסים של חיל המודיעין</Typography>
+			<Typography variant='h5'  className='logInText'>מערכת הטפסים של חיל המודיעין</Typography>
       
 		</Box> 		
 		);

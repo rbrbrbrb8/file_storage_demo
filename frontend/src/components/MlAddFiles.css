@@ -1,7 +1,9 @@
 .addFilePage {
     background-color: #E7F3D6;
-    width: 49.8vw;
-    height: 28.8vw;
+    width: 55.8vw;
+    min-width: 550px;
+    height: 32.8vw;
+    min-height: 348px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

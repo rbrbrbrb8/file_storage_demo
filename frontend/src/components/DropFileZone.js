@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import './DropFileZone.css';
+import pdfIcon from '../images/pdfIcon.png';
+import ImageIcon from '../images/imageIcon.png';
 
-const DropFileZone = ({open, details}) => { 
+const DropFileZone = ({open, details, addFile}) => { 
 
   /* const fileTypes = ["JPG", "PNG", "PDF"]; */
+  const [underDropMessage, setUnderDropMessage] = useState("טופס לדוגמא");
+  const [fileDropped, setFileDropped] = useState(false);
+  const [imageUsed, setImageUsed] = useState(pdfIcon);
 
   const fileTypes = details.files;
-  const [file, setFile] = useState(null);
+
 
   const handleChange = (file1) => {
-    setFile(file1);    
+    if (details.type == "2") {
+      setImageUsed(ImageIcon);
+      console.log(2);
+    }
+    setUnderDropMessage(file1.name)
+    setFileDropped(true);
+    
+    addFile(file1)
   };
 
   const handleDrop = (file1) => {
@@ -22,7 +34,12 @@ const DropFileZone = ({open, details}) => {
 
     <div >     
       <FileUploader onDrop={handleDrop} handleChange={handleChange} label={details.text} hoverTitle="העלה" name="file" types={fileTypes} />
-      {details.link && <a href={details.link} target="_blank" className="dropZoneLink"><Typography variant='body1' className='logInText'>טופס לדוגמא</Typography></a>}
+      {fileDropped && <Box className="showFile1">
+        <img src={imageUsed} className='FileTypeImage1' />
+        <Typography variant='body1' >{underDropMessage}</Typography>
+      </Box>}
+      {(!fileDropped && details.link) && <a href={details.link} target="_blank" className="dropZoneLink"><Typography variant='body1' >{underDropMessage}</Typography></a>}
+      
     </div>
   );
 }

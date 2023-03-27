@@ -5,6 +5,7 @@
   background-image: url('./images/gradient.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Times New Roman", Times, serif !important;
   
   min-height: 100vh;
   display: flex;
@@ -18,6 +19,7 @@
   background-image: url('./images/gradient2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Times New Roman", Times, serif !important;
   
   min-height: 100vh;
   display: flex;

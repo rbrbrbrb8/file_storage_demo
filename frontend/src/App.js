@@ -7,10 +7,22 @@ import PeopleInCourse from './mashakComponents/peopleInCourse';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserProvider } from './mashakComponents/UserContext';
+import { colors, createTheme, ThemeProvider } from '@mui/material';
 
 
 
-
+const theme = createTheme({
+   typography: {
+    fontFamily: [
+      "Times New Roman", 'Times', 'serif'
+    ].join(','),
+  },
+  palette:{
+    secondary: {
+      main: colors.orange[500]
+    }
+  }
+})
 function App() {
 
   
@@ -20,19 +32,24 @@ function App() {
 
   return (
     <div className='stam'>
+      
+        <Router>
+          <div className="App">
+            <header className="App-header" >
+              <ThemeProvider theme={theme}>
+              <Routes>
+                <Route exact path='/LogIn' element={<LogIn setApprovedUser={setApprovedUser} />} />
+                <Route exact path='/UploadFiles' element={<MlAddFiles approvedUser={approvedUser}/>} />         
+              </Routes>
+              </ThemeProvider>
+            </header>
+          </div>
+        </Router>
+      
       {/* <Router>
         <div className="App">
-          <header className="App-header" >
-            <Routes>
-              <Route exact path='/LogIn' element={<LogIn setApprovedUser={setApprovedUser} />} />
-              <Route exact path='/UploadFiles' element={<MlAddFiles approvedUser={approvedUser}/>} />         
-            </Routes>
-          </header>
-        </div>
-      </Router> */}
-      <Router>
-        <div className="App">
           <header className="App-header2">
+          <ThemeProvider theme={theme}>
           <UserProvider>
             <Routes>                         
               <Route exact path='/MASHAKLogIn' element={<MashakLogIn/>} />
@@ -40,9 +57,10 @@ function App() {
               <Route exact path='/Course' element={<PeopleInCourse courseInUse={courseInUse} />} />            
             </Routes>
           </UserProvider>
+          </ThemeProvider>
           </header>
         </div>
-      </Router>
+      </Router> */}
     </div>
   );
 }

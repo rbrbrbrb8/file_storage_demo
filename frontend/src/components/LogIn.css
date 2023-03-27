@@ -1,7 +1,9 @@
 .loginS{
-    background-color: #E7F3D6;
+    background-color: #E7F3D6 !important;
     width: 19.8vw;
+    min-width: 265px;
     height: 28.8vw;
+    min-height: 370px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -13,13 +15,15 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 18vw;
-    padding: 12px;
+    min-height: 260px;
+    padding: 6px !important;
 }
 .TextForm{
     border: 3px dotted red;
     border-radius: 30%;
+    
 }
 .logInText{
     color: black;
-    
+    font-family: "Times New Roman", Times, serif !important;
 }
