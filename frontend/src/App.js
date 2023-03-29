@@ -33,7 +33,7 @@ function App() {
   return (
     <div className='stam'>
       
-        <Router>
+        {/* <Router>
           <div className="App">
             <header className="App-header" >
               <ThemeProvider theme={theme}>
@@ -44,9 +44,9 @@ function App() {
               </ThemeProvider>
             </header>
           </div>
-        </Router>
+        </Router> */}
       
-      {/* <Router>
+      <Router>
         <div className="App">
           <header className="App-header2">
           <ThemeProvider theme={theme}>
@@ -60,7 +60,7 @@ function App() {
           </ThemeProvider>
           </header>
         </div>
-      </Router> */}
+      </Router>
     </div>
   );
 }

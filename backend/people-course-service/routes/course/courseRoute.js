@@ -19,6 +19,7 @@ courseRouter.post('/', async (req, res) => { //the request gets deadline,open da
 
 courseRouter.get('/all', async (req, res) => { //the request gets empty and returns general details on all of the courses (future - use access control)
  const info = await courseHandler.getGeneralInfo();
+ res.header('Access-Control-Allow-Origin','*');
  res.send(info);
 })
 

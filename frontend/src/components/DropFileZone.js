@@ -32,7 +32,8 @@ const DropFileZone = ({open, details, addFile}) => {
 
   return (
 
-    <div >     
+    <div className="FullFileDrop">
+      <Typography variant='h6' >{details.text}</Typography>     
       <FileUploader onDrop={handleDrop} handleChange={handleChange} label={details.text} hoverTitle="העלה" name="file" types={fileTypes} />
       {fileDropped && <Box className="showFile1">
         <img src={imageUsed} className='FileTypeImage1' />

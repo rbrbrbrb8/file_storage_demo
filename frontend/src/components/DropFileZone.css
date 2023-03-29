@@ -14,3 +14,7 @@
     width: 25px;
     height: 25px;
 }
+.FullFileDrop {
+    /* border-bottom: 1px black solid !important; */
+    margin-bottom: 5px;
+}

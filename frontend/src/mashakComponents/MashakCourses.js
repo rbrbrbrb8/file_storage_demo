@@ -8,41 +8,41 @@ import { useEffect, useState } from 'react';
 import axios, { Axios } from 'axios';
 import { useUser } from './UserContext';
 
-const allCoursesUrl = 'http://localhost:3100/pls-work.pls/GET/api/course/all';
+const allCoursesUrl = 'http://localhost:3100/api/course/all';
 
 const exampCourses2= [
   {
-    name: "טרצ מסוג א",
-    numFemale: 16,
+    name: "ארטמיס",
+    numFemale: 12,
     numMale: 18,
     keva: 17,
-    a16: 8,
+    a16: 4,
     images: 24,
     id:1,
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג א",
+    name: "קורס תאנה",
     numFemale: 16,
-    numMale: 18,
+    numMale: 23,
     keva: 17,
     a16: 8,
-    images: 24,
+    images: 9,
     id:7
   },
   {
-    name: "טרצ מסוג א",
-    numFemale: 16,
-    numMale: 18,
-    keva: 17,
+    name: "מסלול דרקון",
+    numFemale: 12,
+    numMale: 15,
+    keva: 12,
     a16: 8,
     images: 24,
     id:8,
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג א",
-    numFemale: 16,
+    name: "קורס פרדס",
+    numFemale: 11,
     numMale: 18,
     keva: 17,
     a16: 8,
@@ -51,7 +51,7 @@ const exampCourses2= [
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג א",
+    name: "קורס מרמ",
     numFemale: 16,
     numMale: 18,
     keva: 17,
@@ -61,7 +61,7 @@ const exampCourses2= [
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג א",
+    name: "מסלול אעה",
     numFemale: 16,
     numMale: 18,
     keva: 17,
@@ -71,7 +71,7 @@ const exampCourses2= [
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג ב",
+    name: "קורס אורביט",
     numFemale: 4,
     numMale: 8,
     keva: null,
@@ -81,7 +81,7 @@ const exampCourses2= [
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג ב",
+    name: "מסלול סיגמא",
     numFemale: 4,
     numMale: 8,
     keva: null,
@@ -91,7 +91,7 @@ const exampCourses2= [
     people: [2,4,5,3,324,547,1234,54376]
   },
   {
-    name: "טרצ מסוג ב",
+    name: "קורס דולב",
     numFemale: 4,
     numMale: 8,
     keva: null,

@@ -59,7 +59,7 @@ const LogIn = ({setApprovedUser}) => {
   }
 	return (
 		<Box className="loginS">
-      <Typography variant='h3'className='logInText'>log in</Typography>
+      <Typography variant='h6'className='logInText'>מלשב יקר, על מנת להעלות את הטפסים הנדרשים לקראת הטרץ הכנס בעזרת תעודת זהות וקוד שקיבלת במסרון</Typography>
       <form onSubmit={handleSubmit} className="logInForm">
         <TextField
           className="TextForm"
@@ -71,7 +71,7 @@ const LogIn = ({setApprovedUser}) => {
         />
         <TextField
           className="TextForm"
-          label="סיסמה"
+          label="קוד ממייל"
           type="password"        
           onChange={(e) => {setPassword(e.target.value)} }
         />

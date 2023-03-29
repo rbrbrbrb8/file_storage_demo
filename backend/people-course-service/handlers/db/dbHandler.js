@@ -5,7 +5,7 @@ require('dotenv').config();
 // console.log(process.env)
 
 dbHandler.init = () => {
-  mongoose.connect('mongodb://people-course-mongo-service:27017/protoImages', { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://localhost:27017/protoImages', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(res => {console.log('yessirrrr we up')})
   .catch(err => {console.log(err)})
 }

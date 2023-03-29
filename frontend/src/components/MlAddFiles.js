@@ -26,14 +26,14 @@ const MlAddFiles = ({approvedUser}) => {
   }
 
   const forms = [{
-    text: "צרפו קובץ קבע   ",
+    text: "צרפו טופס קבע   ",
     link: "https://www.mitgaisim.idf.il/media/25369/%D7%97%D7%95%D7%96%D7%94-%D7%94%D7%AA%D7%97%D7%99%D7%99%D7%91%D7%95%D7%AA-%D7%9E%D7%95%D7%A7%D7%93%D7%9E%D7%AA-%D7%9C%D7%A7%D7%91%D7%A2-%D7%90%D7%97%D7%99%D7%93-%D7%A4%D7%91%D7%A8%D7%95%D7%90%D7%A8-20-4.pdf",
     files: ["PDF" ],
     type: 1,
     id:1
     },
     {
-    text: "צרפו קובץ 16 א   ",
+    text: "צרפו טופס 16 א   ",
     link: "https://www.mitgaisim.idf.il/media/25370/16-%D7%90-%D7%98%D7%A0%D7%98%D7%98%D7%99%D7%91%D7%99.pdf",
     files: ["PDF" ],
     type: 1,
