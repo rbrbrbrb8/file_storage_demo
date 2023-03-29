@@ -12,7 +12,7 @@ import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import SignalCellularNoSimRoundedIcon from '@mui/icons-material/SignalCellularNoSimRounded';
 import axios, { Axios } from 'axios';
 
-const getFileUrl = 'http://pls-work.pls/GET/s3/single'
+const getFileUrl = 'http://localhost:3200/s3/single'
 const reminderUrl = 'http://pls-work.pls/POST/gmail/sendMail'
 
 const MalshabCard = ({malshab}) => {
@@ -21,12 +21,11 @@ const MalshabCard = ({malshab}) => {
 
   //image
   const handleImageClick = ()  =>{
-    axios.get(getFileUrl, {id:makshabId, type:"image"})
+    axios.get(getFileUrl, {params:{s3Id:'6ccf332f4ee0e2c9735da279289872d947737a730e0e5580aacf6da302516160.jpg', type:"file1"}})
     .then( res => {
       console.log(res, 'open image')
     })
     .catch(err => console.log(err))
-    console.log( 'open image e')
   }
   //keva
   const handleKevaClick = ()  =>{

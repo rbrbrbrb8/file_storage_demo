@@ -14,8 +14,8 @@ app.use(express.json())
 
 const port = process.env.PORT || 3100;
 
-app.use('/people',peopleRouter);
-app.use('/course',courseRouter);
+app.use('/api/people',peopleRouter);
+app.use('/api/course',courseRouter);
 
 
 app.listen(port, () => console.log(
