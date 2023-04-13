@@ -18,7 +18,8 @@
 .coursesDimen {
   width: 70.8vw;
   min-width: 654px;
-  min-height: 22.5vw;
+  height: 34.5vw;
+  min-height: 260px;
   display: flex;
   margin-top: 0.5vw;
   flex-direction: column;

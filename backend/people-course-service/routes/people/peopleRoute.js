@@ -19,6 +19,7 @@ peopleRouter.get('/:id', async (req, res) => { //this request gets an id of cert
   const {id} = req.params;
   console.log(req.params);
   const person = await peopleHandler.findPerson(id);
+  res.header('Access-Control-Allow-Origin','*');
   res.send(person);
 })
 

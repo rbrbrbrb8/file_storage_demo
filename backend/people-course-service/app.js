@@ -6,8 +6,11 @@ const peopleRouter = require('./routes/people/peopleRoute');
 const dbHandler = require('./handlers/db/dbHandler');
 const courseRouter = require('./routes/course/courseRoute');
 const app = express();
+const cors = require('cors')
 dbHandler.init();
-
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(session({'secret':'siuuu'}));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json())

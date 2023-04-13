@@ -6,8 +6,9 @@ import axios, { Axios } from 'axios';
 import excelImg from '../images/excelIcon1.png'
 import './newCourseDialog.css';
 
-const newCourseUrl = 'http://pls-work.pls/POST/api/course/new';
-const workingUrl = 'https://jsonplaceholder.typicode.com/posts';
+const newCourseUrl = 'http://localhost:3100/api/course/new';
+
+const arryOfPeople = [{_id:983473527},{_id:983473523}];
 
 const NewCourseDialog = ({open}) => {
 
@@ -19,13 +20,16 @@ const NewCourseDialog = ({open}) => {
   const [lastSubmitDate,setLastSubmitDate] = useState(null);
   const [file, setFile] = useState(null);
 
+
+  const startd = Date.now();
+
   const handleSubmitClick = () =>{
-    axios.post(newCourseUrl, {
-      peopleFile:file,
-      name: courseName,
-      startDate: openningDate,
-      deadline: lastSubmitDate
-    })
+    
+    axios.post(newCourseUrl,
+      {people:arryOfPeople,
+        name: "קורס ניסיון",
+        startDate:openningDate,
+        deadline:lastSubmitDate})
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }

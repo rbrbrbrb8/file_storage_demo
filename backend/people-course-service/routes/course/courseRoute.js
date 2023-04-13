@@ -3,18 +3,30 @@ const courseHandler = require('../../handlers/course/courseHandler');
 const peopleHandler = require('../../handlers/people/peopleHandler');
 const courseRouter = express.Router();
 
-courseRouter.post('/', async (req, res) => { //the request gets deadline,open day,list of people,and name and creates a new course document in db
+courseRouter.post('/new', async (req, res) => { //the request gets deadline,open day,list of people,and name and creates a new course document in db
   const { people, name, deadline, startDate } = req.body;
-  const peopleIds = (await peopleHandler.uploadPeople(people)).map(person => person._id);
-  const course = {
-    name:name,
-    deadline:deadline,
-    startDate:startDate,
-    people:peopleIds
+  console.log('got request')
+  try {
+    const peopleIds = (await peopleHandler.uploadPeople(people)).map(person => person._id); 
+    try {
+      const course = {
+        name:name,
+        deadline:deadline,
+        startDate:startDate,
+        people:peopleIds
+      }
+      const uploaded = await courseHandler.createCourse(course);
+      //consider mapping the original people and get just the tazes, and then upload to both collections simultaneously
+      res.header('Access-Control-Allow-Origin','*');
+      res.send(uploaded);
+    } catch (error) {
+      console.log('error in course handler')
+    }
+  } catch (error) {
+    console.log(error)
   }
-  const uploaded = await courseHandler.createCourse(course);
-  //consider mapping the original people and get just the tazes, and then upload to both collections simultaneously
-  res.send(uploaded);
+  
+  
 });
 
 courseRouter.get('/all', async (req, res) => { //the request gets empty and returns general details on all of the courses (future - use access control)

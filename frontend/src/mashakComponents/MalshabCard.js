@@ -11,22 +11,31 @@ import FaceRetouchingOffRoundedIcon from '@mui/icons-material/FaceRetouchingOffR
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import SignalCellularNoSimRoundedIcon from '@mui/icons-material/SignalCellularNoSimRounded';
 import axios, { Axios } from 'axios';
+import { useEffect, useState } from 'react';
+
+import FileSaver from 'file-saver';
 
 const getFileUrl = 'http://localhost:3200/s3/single'
 const reminderUrl = 'http://pls-work.pls/POST/gmail/sendMail'
 
 const MalshabCard = ({malshab}) => {
 
-  const makshabId=malshab.id;
+  
 
+  const makshabId=malshab.id;
+  
+  
   //image
-  const handleImageClick = ()  =>{
-    axios.get(getFileUrl, {params:{s3Id:'6ccf332f4ee0e2c9735da279289872d947737a730e0e5580aacf6da302516160.jpg', type:"file1"}})
-    .then( res => {
-      console.log(res, 'open image')
+  const handleImageClick =async ()  =>{
+        
+    axios.get(getFileUrl, {params:{s3Id:'4daf9169e16e07d45edae9833de026da27fc6819e8342b9ff2fb23d1d9d28935.jpg', type:"file1"}})
+    .then(async (res) => {
+      const fileBlob =await (await fetch(res.data)).blob();
+      FileSaver.saveAs( fileBlob,'test.jpg');
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err))      
   }
+  
   //keva
   const handleKevaClick = ()  =>{
     axios.get(getFileUrl, {id:makshabId, type:"keva"})
@@ -72,7 +81,7 @@ const MalshabCard = ({malshab}) => {
 
       <Grid item xs={2}>
         <CardActions>
-          {malshab.image && <IconButton onClick={handleImageClick} aria-label="image">
+          {malshab.image && <IconButton download="file1.jpg"  onClick={handleImageClick} aria-label="image">
             <ImageRoundedIcon  sx ={{color: "#3BAF00"}} />
           </IconButton>}
           {!malshab.image && <IconButton disableRipple aria-label="image">
@@ -116,6 +125,7 @@ const MalshabCard = ({malshab}) => {
 
     </Grid>
     </Card>
+    
     </div>  
   );
 }

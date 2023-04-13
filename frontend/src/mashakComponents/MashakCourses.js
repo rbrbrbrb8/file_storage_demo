@@ -13,8 +13,8 @@ const allCoursesUrl = 'http://localhost:3100/api/course/all';
 const exampCourses2= [
   {
     name: "ארטמיס",
-    numFemale: 12,
-    numMale: 18,
+    females: 12,
+    males: 18,
     keva: 17,
     a16: 4,
     images: 24,
@@ -23,8 +23,8 @@ const exampCourses2= [
   },
   {
     name: "קורס תאנה",
-    numFemale: 16,
-    numMale: 23,
+    females: 16,
+    males: 23,
     keva: 17,
     a16: 8,
     images: 9,
@@ -32,8 +32,8 @@ const exampCourses2= [
   },
   {
     name: "מסלול דרקון",
-    numFemale: 12,
-    numMale: 15,
+    females: 12,
+    males: 15,
     keva: 12,
     a16: 8,
     images: 24,
@@ -42,8 +42,8 @@ const exampCourses2= [
   },
   {
     name: "קורס פרדס",
-    numFemale: 11,
-    numMale: 18,
+    females: 11,
+    males: 18,
     keva: 17,
     a16: 8,
     images: 24,
@@ -52,8 +52,8 @@ const exampCourses2= [
   },
   {
     name: "קורס מרמ",
-    numFemale: 16,
-    numMale: 18,
+    females: 16,
+    males: 18,
     keva: 17,
     a16: 8,
     images: 24,
@@ -62,8 +62,8 @@ const exampCourses2= [
   },
   {
     name: "מסלול אעה",
-    numFemale: 16,
-    numMale: 18,
+    females: 16,
+    males: 18,
     keva: 17,
     a16: 8,
     images: 24,
@@ -72,8 +72,8 @@ const exampCourses2= [
   },
   {
     name: "קורס אורביט",
-    numFemale: 4,
-    numMale: 8,
+    females: 4,
+    males: 8,
     keva: null,
     a16: 2,
     images: 7,
@@ -82,8 +82,8 @@ const exampCourses2= [
   },
   {
     name: "מסלול סיגמא",
-    numFemale: 4,
-    numMale: 8,
+    females: 4,
+    males: 8,
     keva: null,
     a16: 2,
     images: 7,
@@ -92,8 +92,8 @@ const exampCourses2= [
   },
   {
     name: "קורס דולב",
-    numFemale: 4,
-    numMale: 8,
+    females: 4,
+    males: 8,
     keva: null,
     a16: 2,
     images: 7,
@@ -102,8 +102,8 @@ const exampCourses2= [
   },
   {
     name: "טרצ מסוג ג",
-    numFemale: 12,
-    numMale: 9,
+    females: 12,
+    males: 9,
     keva: 5,
     a16: 2,
     images: 7,
@@ -120,13 +120,11 @@ const MashakCourses = ({setCourseInUse}) => {
   }
   useEffect(() =>{
     axios.get(allCoursesUrl)
-    .then(res => {
-      console.log(res.data);
-      setCourses(res.data);
-      
+    .then(res => {     
+      setCourses(res.data);      
     })
     .catch( err => {console.log(err)})
-    setCourses(exampCourses2);
+    
   },[])
 
   return ( 
@@ -137,7 +135,7 @@ const MashakCourses = ({setCourseInUse}) => {
       {exampCourses && <Box className='coursesDimen'>
         {
           exampCourses.map((course) => (
-            <CourseCard key={course.id} details={course} setCourseInUse={setCourseInUse} />
+            <CourseCard key={course._id} details={course} setCourseInUse={setCourseInUse} />
           ))}
       </Box>}
         <NewCourseDialog/>

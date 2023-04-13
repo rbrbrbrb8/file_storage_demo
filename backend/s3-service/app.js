@@ -32,6 +32,7 @@ app.post('/s3/upload', upload.single('image'), async (req, res) => {
 app.get('/s3/single',async (req,res) => {
   const {s3Id} = req.query;
   const url = await s3Handler.getFileUrl(s3Id);
+  console.log(url);
   res.header('Access-Control-Allow-Origin','*');
   res.send(url)
 });

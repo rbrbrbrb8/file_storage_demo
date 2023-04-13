@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const dbHandler = {};
-require('dotenv').config();
+// require('dotenv').config();
 
 // console.log(process.env)
 
 dbHandler.init = () => {
-  mongoose.connect('mongodb://localhost:27017/protoImages', { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect('mongodb://127.0.0.1:27017/protoImages', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(res => {console.log('yessirrrr we up')})
   .catch(err => {console.log(err)})
 }

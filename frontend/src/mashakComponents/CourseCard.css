@@ -10,7 +10,8 @@
   align-items: center;
   width: 58vw;
   min-width: 490px;
-  min-height: 50px;  
+  min-height: 50px;
+  height: 3.3vw;  
   border-radius: 45px !important;
   margin-top: 0.5vw;
 }

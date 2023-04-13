@@ -124,21 +124,21 @@ const peopleInCourseArr1 = [
   }
   
 ]
-const urlPeople='http://pls-work.pls/GET/api/people/many';
+const urlPeople='http://localhost:3100/api/people/232323232';
 
 const PeopleInCourse = ({courseInUse}) => {
   const [peopleInCourseArr, setPeopleInCourse] = useState(null);
 
   useEffect(() => {
-    
-    axios.get(urlPeople, {IdArry: courseInUse.people})
+    let person = 1;
+    axios.get(urlPeople)
     .then(res => {
-      console.log(res.data );
-      //setPeopleInCourse(res.data);  
+      console.log(res.data );       
     })
     .catch(err => console.log(err));
+    
+
     setPeopleInCourse(peopleInCourseArr1);
-    console.log(courseInUse,"dsfsd");
   }, [])
 
   return (  

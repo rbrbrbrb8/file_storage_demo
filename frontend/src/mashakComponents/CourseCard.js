@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 const courseReminderUrl ='http://pls-work.pls/POST/gmail/sendMail'
 
+
 const CourseCard = ({details, setCourseInUse}) => {
 
   const navigate = useNavigate()
-  const sumOfParticipants = details.numFemale +details.numMale;
+  const sumOfParticipants = details.females +details.males;
+
   const handleSendReminder =(setCourseInUse) =>{
-    //sends to everybody API needs to be updated
-  
+    //sends to everybody API needs to be updated  
     axios.post(courseReminderUrl, {
     courseId: details.id      
     })
@@ -25,45 +26,7 @@ const CourseCard = ({details, setCourseInUse}) => {
     setCourseInUse(details);
     navigate("/Course");
   }
-  {/* <Card  className='allCard'>
-      <CardHeader className='CardHeder'
-        avatar={
-          <Avatar onClick={handleAvatarClick} className='cardAvatar' >
-            {details.name.slice(-1)}
-          </Avatar>          
-        }
-      />      
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {details.name}
-        </Typography>        
-      </CardContent>
-
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-            תמונות: {details.images}/{sumOfParticipants}
-        </Typography>
-      </CardContent>
-
-      {details.keva && <CardContent>
-        <Typography variant="body2" color="text.secondary">
-            קבע: {details.keva}/{sumOfParticipants}
-        </Typography>
-      </CardContent>}
-
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-            דין אישה כדין גבר: {details.a16}/{details.numFemale}
-        </Typography>
-      </CardContent>
-      
-      <CardActions>
-        <IconButton  aria-label="delete" onClick={handleSendReminder} >
-          <SendRoundedIcon className='reversIcon'  />
-        </IconButton>
-        
-      </CardActions>
-    </Card> */}
+  
 
   return (  
     <Card className='allCard'> 
@@ -96,7 +59,7 @@ const CourseCard = ({details, setCourseInUse}) => {
       <Grid item xs={3}>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-              דין אישה כדין גבר: {details.a16}/{details.numFemale}
+              דין אישה כדין גבר: {details.a16}/{details.females}
           </Typography>
         </CardContent>
       </Grid>
