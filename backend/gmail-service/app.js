@@ -14,7 +14,7 @@ app.use(express.json())
 const port = process.env.PORT || 3300;
 
 
-app.post('/sendMail', async (req, res) => { //sends the messages as arrays per date!
+app.post('/gmail/sendMail', async (req, res) => { //sends the messages as arrays per date!
   const mailTo = req.body.mailTo;
   console.log(req.body);
   const options = {

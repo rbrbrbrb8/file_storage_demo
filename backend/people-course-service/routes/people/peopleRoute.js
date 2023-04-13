@@ -15,6 +15,21 @@ peopleRouter.post('/', async (req, res) => { //this gets info about a person/man
 
 });
 
+peopleRouter.post('/addFile',async (req,res) => {
+  const {id,fileType,s3Id}  = req.body
+  console.log('request taken')
+  try {
+    const update = await peopleHandler.addFileToPerson(id,{fileType:fileType,s3Id:s3Id});
+    console.log('yesss')
+    res.status(200).send('lets fucking goooo');
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error)
+  }
+  
+  // res.send(req.body);
+})
+
 peopleRouter.get('/:id', async (req, res) => { //this request gets an id of certain person and returns the info about that person
   const {id} = req.params;
   console.log(req.params);

@@ -16,8 +16,16 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    - image: protoimages/dummy-frontend-service
-      context: dummy-frontend-service
+    - image: protoimages/realfront
+      context: ../frontend
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: protoimages/s3-service
+      context: s3-service
       docker:
         dockerfile: Dockerfile
       sync:
