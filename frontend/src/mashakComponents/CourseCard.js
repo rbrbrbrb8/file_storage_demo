@@ -13,7 +13,8 @@ const CourseCard = ({details, setCourseInUse}) => {
   const sumOfParticipants = details.females +details.males;
 
   const handleSendReminder =(setCourseInUse) =>{
-    //sends to everybody API needs to be updated  
+    //sends to everybody API needs to be updated 
+    console.log(details.keva); 
     axios.post(courseReminderUrl, {
     courseId: details.id      
     })
@@ -65,16 +66,16 @@ const CourseCard = ({details, setCourseInUse}) => {
       </Grid>
     
       <Grid item xs={2}>
-          {details.keva && <CardContent>
+          <CardContent>
             <Typography variant="body2" color="text.secondary">
                 קבע: {details.keva}/{sumOfParticipants}
             </Typography>
-          </CardContent>}
+          </CardContent>
       </Grid>
 
       <Grid item xs={1}>
         <CardActions>
-          <IconButton  aria-label="delete" onClick={handleSendReminder} >
+          <IconButton  aria-label="remainder" onClick={handleSendReminder} >
             <SendRoundedIcon className='reversIcon'  />
           </IconButton>        
         </CardActions>

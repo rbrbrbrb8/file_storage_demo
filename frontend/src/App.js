@@ -4,6 +4,7 @@ import MashakLogIn from './mashakComponents/MshakLogIn';
 import MlAddFiles from './components/MlAddFiles';
 import MashakCourses from './mashakComponents/MashakCourses';
 import PeopleInCourse from './mashakComponents/peopleInCourse';
+import FileUploadScreen from './components/filesUploaded';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserProvider } from './mashakComponents/UserContext';
@@ -14,7 +15,7 @@ import { colors, createTheme, ThemeProvider } from '@mui/material';
 const theme = createTheme({
    typography: {
     fontFamily: [
-      "Times New Roman", 'Times', 'serif'
+      'Times', "Times New Roman",  'serif'
     ].join(','),
   },
   palette:{
@@ -51,7 +52,11 @@ function App() {
           <header className="App-header2">
           <ThemeProvider theme={theme}>
           <UserProvider>
-            <Routes>                         
+            <Routes>
+              <Route exact path='/LogIn' element={<LogIn setApprovedUser={setApprovedUser} />} />
+              <Route exact path='/UploadFiles' element={<MlAddFiles approvedUser={approvedUser}/>} />
+              <Route exact path='/FilesUploaded' element={<FileUploadScreen approvedUser={approvedUser}/>} />
+                                       
               <Route exact path='/MASHAKLogIn' element={<MashakLogIn/>} />
               <Route exact path='/MASHAKCourses' element={<MashakCourses setCourseInUse={setCourseInUse}/>} />
               <Route exact path='/Course' element={<PeopleInCourse courseInUse={courseInUse} />} />            

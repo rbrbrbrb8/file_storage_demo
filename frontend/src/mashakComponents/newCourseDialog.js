@@ -8,13 +8,37 @@ import './newCourseDialog.css';
 
 const newCourseUrl = 'http://localhost:3100/api/course/new';
 
-const arryOfPeople = [{_id:983473527},{_id:983473523}];
+const arryOfPeople = [
+  {
+    id:"123456789",
+    fullName: "person1",
+    phoneNum: "0543199370",
+    mail: "ksjdfhs@gmail.com",
+    gender:"male",
+    authCode: "12312"
+  },
+  {
+    id:"123456788",
+    fullName: "person2",
+    phoneNum: "0543199371",
+    mail: "ksjdfhs2@gmail.com",
+    gender:"female",
+    authCode: "12313"
+  },
+  {
+    id:"123456787",
+    fullName: "person3",
+    phoneNum: "0543199374",
+    mail: "ksjdfhs3@gmail.com",
+    gender:"female",
+    authCode: "12314"
+  }
+];
 
 const NewCourseDialog = ({open}) => {
 
   const [dialogState, setDialogState] = useState(false);
   const [showFiles, setShoeFiles] =useState(false);
-
   const [courseName,setCourseName] = useState(null);
   const [openningDate, setOpenningDate] = useState(null);
   const [lastSubmitDate,setLastSubmitDate] = useState(null);
@@ -24,12 +48,27 @@ const NewCourseDialog = ({open}) => {
   const startd = Date.now();
 
   const handleSubmitClick = () =>{
-    
+    let malesCou = 0;
+    let femalesCou = 0;
+    for (let index = 0; index < arryOfPeople.length; index++) {
+      if (arryOfPeople[index].gender === "male")
+        malesCou++;
+      else
+        femalesCou++;      
+    }
+    console.log(malesCou, femalesCou);
     axios.post(newCourseUrl,
-      {people:arryOfPeople,
-        name: "קורס ניסיון",
+      {
+        people:arryOfPeople,       
+        name: courseName,
         startDate:openningDate,
-        deadline:lastSubmitDate})
+        deadline:lastSubmitDate,
+        males:malesCou,
+        females:femalesCou,
+        a16:0,
+        keva:0,
+        images:0
+      })
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }

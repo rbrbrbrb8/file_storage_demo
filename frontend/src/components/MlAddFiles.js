@@ -1,28 +1,42 @@
-import {Box, Button, Typography } from '@mui/material'
+import {Alert, Box, Button, Snackbar, Typography } from '@mui/material'
 import './MlAddFiles.css';
+import {useNavigate } from 'react-router-dom';
+
 import DropFileZone from "./DropFileZone";
 import { useState } from 'react';
 import axios, { Axios } from 'axios';
-const sendFilesUrl ="http://pls-work.pls/POST/s3/upload"
+const uploadFilesUrl ="http://localhost:3200/s3/upload"
 const editableFileArry = [];
   
 const MlAddFiles = ({approvedUser}) => {
-  const [fileArry, setFileArry] = useState(editableFileArry)
+  const navigate = useNavigate();
+ 
+  const [fileArray, setFileArry] = useState(editableFileArry)
+  const [snackbarState, setSnackbarState] = useState(false);
   
-  const handleSend = () => {
-
-    fileArry.forEach(file => {
-      axios.post(sendFilesUrl , {
-        files:file
-      })
-      .then(res => {console.log(res)})
-      .catch(err => console.log(err))
-    })
+  
+  const handleSend =async () => {
+    if (fileArray.length === approvedUser.tfasim.length) {
+      fileArray.array.forEach(async file => {
+      const formData1 = new FormData();
+      formData1.append('image',file );
+      formData1.append("fileData", JSON.stringify({id:'123456789',fileType:'file69'}))
+      const res = await axios.post(uploadFilesUrl, formData1, { headers: { 'Content-Type': 'multipart/form-data' } })      
+      });  
+      
+      navigate("/FilesUploaded");
+    }
+    else {
+      setSnackbarState(true);
+    }    
   }
 
-  const handleNewFile = (file ) => {    
+  const handleNewFile = (file ) => {
     editableFileArry.push(file);
     setFileArry(editableFileArry);
+  }
+  const handleSnackBarClose = () =>{
+    setSnackbarState(false);
   }
 
   const forms = [{
@@ -49,17 +63,23 @@ const MlAddFiles = ({approvedUser}) => {
 ]
   
 
-  return (  
-    <Box className="addFilePage"> 
+  return (
+    <Box className="addFilePage">      
       <Typography variant='h5' className='logInText'>: {approvedUser.name} קבצים להעלאה</Typography>
           
       {approvedUser.tfasim.map((tofes,index) =>(
-        <Box>
+        <Box key={tofes.id}>
           {tofes &&<DropFileZone key={forms[index].id}  details={forms[index]} addFile={handleNewFile} />}
         </Box>        
       ))}
-
       <Button variant="contained"  sx={{bgcolor:'secondary.main'}} onClick={handleSend}  >שלח</Button>
+      <Snackbar
+        autoHideDuration={6000}
+        open={snackbarState}
+        onClose={handleSnackBarClose}
+        message="יש להעלות את כל הקבצים הנדרשים"
+      />
+      
       
     </Box>
   );

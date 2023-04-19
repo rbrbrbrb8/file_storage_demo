@@ -7,17 +7,24 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 const axios = require('axios');
-
+const cors = require('cors')
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(session({ 'secret': 'siuuu' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
+
+const addFileToPersonUrl = 'http://localhost:3100/api/people/addFile';
 
 const port = process.env.PORT || 3200;
 
 
 app.post('/s3/upload', upload.single('image'), async (req, res) => {
-  // 
+  //
+  res.header('Access-Control-Allow-Origin','*'); 
   if (!req.file) {
+    
     res.status(400).send('need to contain file')
     return ;
   }
@@ -29,11 +36,13 @@ app.post('/s3/upload', upload.single('image'), async (req, res) => {
     // talk with people course service!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     //change link to local host!!!!
-    const update = await axios.post('http://people-course-service:3100/api/people/addFile', {
+    
+    const update = await axios.post(addFileToPersonUrl, {
       id: fileData.id,
       fileType: fileData.fileType,
       s3Id: success.s3Id
     });
+    console.log("ended people part");
     res.status(200).send({ success: true });
     return
   }

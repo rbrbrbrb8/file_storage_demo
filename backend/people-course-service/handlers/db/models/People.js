@@ -11,6 +11,7 @@ const peopleSchema = new Schema({
   fullName:{type:String,required:true},
   phoneNum:{type:String,required:true},
   mail:{type:String,required:true},
+  gender:{type:String, required:true},
   authCode:{type:String,required:true},
   files:{type:[fileSchema],required:false},
   // mailAmount:{type:Number,required:false,default:0}

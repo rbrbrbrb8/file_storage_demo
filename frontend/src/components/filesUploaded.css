@@ -1,0 +1,12 @@
+.screenBack {
+    background-color: #E7F3D6!important;
+    width: 40vw;
+    height: 27vw;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}

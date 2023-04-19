@@ -4,7 +4,7 @@ const peopleHandler = require('../../handlers/people/peopleHandler');
 const courseRouter = express.Router();
 
 courseRouter.post('/new', async (req, res) => { //the request gets deadline,open day,list of people,and name and creates a new course document in db
-  const { people, name, deadline, startDate } = req.body;
+  const { people, name, deadline, startDate, males, females, a16, keva, images } = req.body;
   console.log('got request')
   try {
     const peopleIds = (await peopleHandler.uploadPeople(people)).map(person => person._id); 
@@ -13,7 +13,12 @@ courseRouter.post('/new', async (req, res) => { //the request gets deadline,open
         name:name,
         deadline:deadline,
         startDate:startDate,
-        people:peopleIds
+        people:peopleIds,
+        males:males,
+        females:females,
+        a16:a16,
+        keva:keva,
+        images:images
       }
       const uploaded = await courseHandler.createCourse(course);
       //consider mapping the original people and get just the tazes, and then upload to both collections simultaneously

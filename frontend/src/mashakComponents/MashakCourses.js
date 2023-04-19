@@ -121,7 +121,8 @@ const MashakCourses = ({setCourseInUse}) => {
   useEffect(() =>{
     axios.get(allCoursesUrl)
     .then(res => {     
-      setCourses(res.data);      
+      setCourses(res.data);  
+      console.log(res.data);    
     })
     .catch( err => {console.log(err)})
     

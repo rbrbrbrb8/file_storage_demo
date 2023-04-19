@@ -28,7 +28,7 @@ const MalshabCard = ({malshab}) => {
   //image
   const handleImageClick =async ()  =>{
         
-    axios.get(getFileUrl, {params:{s3Id:'4daf9169e16e07d45edae9833de026da27fc6819e8342b9ff2fb23d1d9d28935.jpg', type:"file1"}})
+    axios.get(getFileUrl, {params:{s3Id:'5e5b604f0e9dfaf6db76d423b6c71a768f0b5ccb2907d9ccfc35c0708419b7f5.jpg', type:"file1"}})
     .then(async (res) => {
       const fileBlob =await (await fetch(res.data)).blob();
       FileSaver.saveAs( fileBlob,'test.jpg');

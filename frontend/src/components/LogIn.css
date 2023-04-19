@@ -1,9 +1,9 @@
 .loginS{
     background-color: #E7F3D6 !important;
     width: 19.8vw;
-    min-width: 265px;
+    min-width: 285px;
     height: 28.8vw;
-    min-height: 370px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

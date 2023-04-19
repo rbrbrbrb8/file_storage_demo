@@ -18,7 +18,6 @@ const DropFileZone = ({open, details, addFile}) => {
   const handleChange = (file1) => {
     if (details.type == "2") {
       setImageUsed(ImageIcon);
-      console.log(2);
     }
     setUnderDropMessage(file1.name)
     setFileDropped(true);
