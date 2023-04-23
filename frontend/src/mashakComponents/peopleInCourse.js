@@ -124,19 +124,31 @@ const peopleInCourseArr1 = [
   }
   
 ]
-const urlPeople='http://localhost:3100/api/people/232323232';
+const peopleUrl='http://localhost:3100/api/people/many';
+const courseUrl='http://localhost:3100/api/course/';
 
 const PeopleInCourse = ({courseInUse}) => {
   const [peopleInCourseArr, setPeopleInCourse] = useState(null);
 
+  const ids = ['64413ad4e287d467b6aba7a3', '64413ad4e287d467b6aba7a4', '64413ad4e287d467b6aba7a5'];
+
   useEffect(() => {
     let person = 1;
-    axios.get(urlPeople)
+    const newCourseUrl = courseUrl+courseInUse._id;
+    console.log(newCourseUrl);
+    axios.get(newCourseUrl)
     .then(res => {
-      console.log(res.data );       
+      console.log(res.data);
+      // console.log(res.data.people );  
+
+      // axios.get(peopleUrl, {params:{ids}})
+      // .then(res2 => {
+      //   console.log(res2);
+      // })
+      // .catch(err =>console.log(err))    
     })
     .catch(err => console.log(err));
-    
+    console.log(courseInUse);
 
     setPeopleInCourse(peopleInCourseArr1);
   }, [])

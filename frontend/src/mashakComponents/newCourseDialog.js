@@ -5,10 +5,11 @@ import { FileUploader } from "react-drag-drop-files";
 import axios, { Axios } from 'axios';
 import excelImg from '../images/excelIcon1.png'
 import './newCourseDialog.css';
+import * as XLSX from 'xlsx';
 
 const newCourseUrl = 'http://localhost:3100/api/course/new';
 
-const arryOfPeople = [
+let arryOfPeople = [
   {
     id:"123456789",
     fullName: "person1",
@@ -38,7 +39,7 @@ const arryOfPeople = [
 const NewCourseDialog = ({open}) => {
 
   const [dialogState, setDialogState] = useState(false);
-  const [showFiles, setShoeFiles] =useState(false);
+  const [showFiles, setShowFiles] =useState(false);
   const [courseName,setCourseName] = useState(null);
   const [openningDate, setOpenningDate] = useState(null);
   const [lastSubmitDate,setLastSubmitDate] = useState(null);
@@ -47,16 +48,29 @@ const NewCourseDialog = ({open}) => {
 
   const startd = Date.now();
 
-  const handleSubmitClick = () =>{
+  const handleSubmitClick =async () =>{
+    console.log(arryOfPeople);
+    const excelFile =await file.arrayBuffer();
+    const workBook = XLSX.read(excelFile);
+
+    const excelSheet = workBook.Sheets[workBook.SheetNames[0]];
+    arryOfPeople = XLSX.utils.sheet_to_json(excelSheet);
+    
+    console.log("over with shenanigans", arryOfPeople);
+    
+    
+
+    // counts males and females
     let malesCou = 0;
     let femalesCou = 0;
     for (let index = 0; index < arryOfPeople.length; index++) {
-      if (arryOfPeople[index].gender === "male")
-        malesCou++;
-      else
+      if (arryOfPeople[index].gender === "male" || arryOfPeople[index].gender === 1)
+        malesCou++
+        else
         femalesCou++;      
     }
-    console.log(malesCou, femalesCou);
+
+    //sending new course to back
     axios.post(newCourseUrl,
       {
         people:arryOfPeople,       
@@ -71,20 +85,20 @@ const NewCourseDialog = ({open}) => {
       })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    setDialogState(false);
   }
 
   const handleClose = () =>{
     setDialogState(false);
   }
 
-  const handleChangeDrop = (file1) => {
-    
+  const handleChangeDrop = (file1) => {    
     if (file1) {
       setFile(file1);
-      setShoeFiles(true);
-      console.log(file1);
+      setShowFiles(true);      
     }       
   };
+  
 
   const handleDropFile = (file1) => {
     //console.log("123456");
