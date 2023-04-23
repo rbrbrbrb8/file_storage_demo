@@ -8,7 +8,7 @@ api calls per service:
 - people-course
   - POST /api/people - gets an info about one person/many, see schema for details. 
   - GET /api/people/:id - gets an id of a person (example: /api/people/123456789)
-  - GET /api/people/many - TO BE IMPLEMENTED
+  - GET /api/people/many - gets JSON.stringify() array of ids
   - POST /api/course/new - gets {people:(array of people, see schema for details),
     name:string,startDate:Date,deadline:Date}
   - GET /api/course/all - ()

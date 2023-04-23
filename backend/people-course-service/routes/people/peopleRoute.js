@@ -37,4 +37,11 @@ peopleRouter.get('/:id', async (req, res) => { //this request gets an id of cert
   res.send(person);
 })
 
+peopleRouter.get('/many', async (req,res) => {
+  const ids = JSON.parse(req.query);
+  const people = await peopleHandler.findManyPeople(ids);
+  res.send(people)
+})
+
 module.exports = peopleRouter;
+
