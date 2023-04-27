@@ -17,7 +17,7 @@ peopleRouter.post('/', async (req, res) => { //this gets info about a person/man
 
 peopleRouter.post('/addFile',async (req,res) => {
   const {id,fileType,s3Id}  = req.body
-  console.log('request taken')
+  console.log('request taken', id,fileType, s3Id)
   try {
     const update = await peopleHandler.addFileToPerson(id,{fileType:fileType,s3Id:s3Id});
     console.log('yesss')
@@ -30,18 +30,19 @@ peopleRouter.post('/addFile',async (req,res) => {
   // res.send(req.body);
 })
 
-peopleRouter.get('/:id', async (req, res) => { //this request gets an id of certain person and returns the info about that person
-  const {id} = req.params;
-  console.log(req.params);
-  const person = await peopleHandler.findPerson(id);
-  res.header('Access-Control-Allow-Origin','*');
-  res.send(person);
-})
+// peopleRouter.get('/:id', async (req, res) => { //this request gets an id of certain person and returns the info about that person
+//   const {id} = req.params;
+//   console.log(req.params);
+//   const person = await peopleHandler.findPerson(id);
+//   res.header('Access-Control-Allow-Origin','*');
+//   res.send(person);
+// })
 
-peopleRouter.get('/many', async (req,res) => {
-  const ids = JSON.parse(req.query);
+peopleRouter.get('/many', async (req,res) => {  
+  const ids = JSON.parse(req.query.ids);
   const people = await peopleHandler.findManyPeople(ids);
-  res.send(people)
+  res.header('Access-Control-Allow-Origin','*');
+  res.send(people);
 })
 
 module.exports = peopleRouter;

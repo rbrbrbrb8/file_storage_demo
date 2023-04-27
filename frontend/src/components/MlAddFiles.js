@@ -16,19 +16,34 @@ const MlAddFiles = ({approvedUser}) => {
   
   
   const handleSend =async () => {
-    if (fileArray.length === approvedUser.tfasim.length) {
-      fileArray.array.forEach(async file => {
-      const formData1 = new FormData();
-      formData1.append('image',file );
-      formData1.append("fileData", JSON.stringify({id:'123456789',fileType:'file69'}))
-      const res = await axios.post(uploadFilesUrl, formData1, { headers: { 'Content-Type': 'multipart/form-data' } })      
-      });  
-      
+    let numOfNeededFiles = 0;
+    approvedUser.tfasim.forEach(tofes =>{
+      if (tofes)
+        numOfNeededFiles++
+    })
+    if (fileArray.length === numOfNeededFiles) {
+      fileArray.forEach(async file => {
+        console.log(file.type)
+        const formData1 = new FormData();
+        formData1.append('image',file );
+        // if (file.type === 'image/jpeg')
+        //   formData1.append('image',file );
+        // else
+        //   formData1.append('pdf',file );
+
+        formData1.append("fileData", JSON.stringify({id:'223456456',fileType:'file69'}))
+        const res = await axios.post(uploadFilesUrl, formData1, { headers: { 'Content-Type': 'multipart/form-data' } })      
+      });             
       navigate("/FilesUploaded");
     }
     else {
       setSnackbarState(true);
-    }    
+    } 
+    // const formData1 = new FormData();
+    // formData1.append('image',fileArray[0] );    
+    // formData1.append("fileData", JSON.stringify({id:'223456456',fileType:'keva'}))
+    // const res = await axios.post(uploadFilesUrl, formData1, { headers: { 'Content-Type': 'multipart/form-data' } })
+       
   }
 
   const handleNewFile = (file ) => {

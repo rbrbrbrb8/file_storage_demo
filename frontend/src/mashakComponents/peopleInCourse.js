@@ -6,7 +6,7 @@ import './peopleInCourse.css';
 
 const peopleInCourseArr1 = [
   {
-    name: "שמואל רסקין",
+    fullName: "שמואל רסקין",
     id: 32554748949,
     phone: 52201294,
     gender:1, 
@@ -15,7 +15,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "נחמה רסקין",
+    fullName: "נחמה רסקין",
     id: 2125363574,
     phone: 52352341,
     gender:2, 
@@ -24,7 +24,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "שאליעזר קין",
+    fullName: "שאליעזר קין",
     id: 4513252647,
     phone: 524362346,
     gender:1, 
@@ -33,7 +33,7 @@ const peopleInCourseArr1 = [
     keva: true
   },
   {
-    name: "מחנה יהודון",
+    fullName: "מחנה יהודון",
     id: 856456231,
     phone: 5865743342,
     gender:2, 
@@ -42,7 +42,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דבורה ג",
+    fullName: "דבורה ג",
     id: 9823437,
     phone: 526347463,
     gender:1, 
@@ -51,7 +51,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "מלחששפרפק ג",
+    fullName: "מלחששפרפק ג",
     id: 7246480,
     phone: 50987564,
     gender:2, 
@@ -60,7 +60,7 @@ const peopleInCourseArr1 = [
     keva: true
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 274578085,
     phone: 54845876,
     gender:2, 
@@ -69,7 +69,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 274548085,
     phone: 54845876,
     gender:2, 
@@ -78,7 +78,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 2745489085,
     phone: 54845876,
     gender:2, 
@@ -87,7 +87,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 2745483085,
     phone: 54845876,
     gender:2, 
@@ -96,7 +96,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 27466548085,
     phone: 54845876,
     gender:2, 
@@ -105,7 +105,7 @@ const peopleInCourseArr1 = [
     keva: false
   },
   {
-    name: "דוב רבינוביץ",
+    fullName: "דוב רבינוביץ",
     id: 27486548085,
     phone: 54845876,
     gender:2, 
@@ -114,7 +114,7 @@ const peopleInCourseArr1 = [
     keva: false
   },  
   {
-    name: "סנאית ג",
+    fullName: "סנאית ג",
     id: 615234578,
     phone: 53473625,
     gender:1, 
@@ -130,27 +130,23 @@ const courseUrl='http://localhost:3100/api/course/';
 const PeopleInCourse = ({courseInUse}) => {
   const [peopleInCourseArr, setPeopleInCourse] = useState(null);
 
-  const ids = ['64413ad4e287d467b6aba7a3', '64413ad4e287d467b6aba7a4', '64413ad4e287d467b6aba7a5'];
+  const ids1 = ['6405e9d45465586304961f5d', '64413ad4e287d467b6aba7a4', '64413ad4e287d467b6aba7a5'];
 
   useEffect(() => {
-    let person = 1;
     const newCourseUrl = courseUrl+courseInUse._id;
-    console.log(newCourseUrl);
     axios.get(newCourseUrl)
     .then(res => {
-      console.log(res.data);
-      // console.log(res.data.people );  
-
-      // axios.get(peopleUrl, {params:{ids}})
-      // .then(res2 => {
-      //   console.log(res2);
-      // })
-      // .catch(err =>console.log(err))    
+      axios.get(peopleUrl, {params:{ids:JSON.stringify(res.data.people)}})
+      .then(res2 => {
+        console.log(res2.data, "sad");
+        if (res2.data.length>0)
+          setPeopleInCourse(res2.data)
+        else
+          setPeopleInCourse(peopleInCourseArr1);      
+      })
+      .catch(err =>console.log(err))    
     })
-    .catch(err => console.log(err));
-    console.log(courseInUse);
-
-    setPeopleInCourse(peopleInCourseArr1);
+    .catch(err => console.log(err));    
   }, [])
 
   return (  

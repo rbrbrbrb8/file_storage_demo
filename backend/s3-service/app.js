@@ -32,7 +32,7 @@ app.post('/s3/upload', upload.single('image'), async (req, res) => {
   const success = await s3Handler.uploadFile(req.file, type);
   if (success.$metadata.httpStatusCode === 200) {
     const fileData = JSON.parse(req.body.fileData);
-    console.log(fileData)
+    console.log(fileData.fileType)
     // talk with people course service!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     //change link to local host!!!!

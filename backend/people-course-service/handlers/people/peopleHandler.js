@@ -12,7 +12,8 @@ peopleHandler.findPerson = id => {
 }
 
 peopleHandler.findManyPeople = idArr => {
-  return dbHandler.findInCollection(PEOPLE,{id:{$in:idArr}})
+  return dbHandler.findInCollection(PEOPLE,{_id:{$in:idArr}})
+  // return dbHandler.findInCollection(PEOPLE,{_id: "6405e9d45465586304961f5d"})
 }
 
 peopleHandler.addFileToPerson = (id,fileInfo) => { // fileInfo is an object that contains two properties: type and s3Id

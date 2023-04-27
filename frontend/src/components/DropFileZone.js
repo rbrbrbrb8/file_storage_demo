@@ -21,8 +21,8 @@ const DropFileZone = ({open, details, addFile}) => {
     }
     setUnderDropMessage(file1.name)
     setFileDropped(true);
-    
-    addFile(file1)
+    console.log("adding");
+    addFile(file1);
   };
 
   const handleDrop = (file1) => {

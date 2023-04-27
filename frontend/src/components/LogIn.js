@@ -28,9 +28,9 @@ const LogIn = ({setApprovedUser}) => {
     },
     {
       name: "ישראלה הישראלית",
-      id: 123456789,
-      password: "Ff123456",
-      tfasim: [true, true, false],
+      id: 2,
+      password: "2",
+      tfasim: [true, false, true],
       a16: true,
       keva: true,
       image: false

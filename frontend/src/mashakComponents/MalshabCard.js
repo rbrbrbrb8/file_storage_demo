@@ -19,16 +19,30 @@ const getFileUrl = 'http://localhost:3200/s3/single'
 const reminderUrl = 'http://pls-work.pls/POST/gmail/sendMail'
 
 const MalshabCard = ({malshab}) => {
-
+const [imageBool,setImageBoll] = useState(false);
+const [imageId,setImageId] = useState(null)
   
 
   const makshabId=malshab.id;
+
+  useEffect(() =>{
+    if (malshab.files!=null) {
+      malshab.files.forEach(element => {
+        if (element.s3Id.includes(".png")||element.s3Id.includes(".jpg")) {
+          console.log(element.s3Id);
+          
+          setImageBoll(true);
+          setImageId( element.s3Id);
+        }
+      });
+    }    
+  },[])
   
   
   //image
   const handleImageClick =async ()  =>{
-        
-    axios.get(getFileUrl, {params:{s3Id:'5e5b604f0e9dfaf6db76d423b6c71a768f0b5ccb2907d9ccfc35c0708419b7f5.jpg', type:"file1"}})
+    console.log(imageId);
+    axios.get(getFileUrl, {params:{s3Id:imageBool ? imageId :'5e5b604f0e9dfaf6db76d423b6c71a768f0b5ccb2907d9ccfc35c0708419b7f5.jpg', type:"file1"}})
     .then(async (res) => {
       const fileBlob =await (await fetch(res.data)).blob();
       FileSaver.saveAs( fileBlob,'test.jpg');
@@ -74,17 +88,17 @@ const MalshabCard = ({malshab}) => {
       <Grid item xs={3}>
       <CardContent className='malshabName'>
         <Typography variant="body2" color="text.secondary">
-          {malshab.name}
+          {malshab.fullName}
         </Typography>        
       </CardContent>
       </Grid>
 
       <Grid item xs={2}>
         <CardActions>
-          {malshab.image && <IconButton download="file1.jpg"  onClick={handleImageClick} aria-label="image">
+          {(malshab.image || imageBool) && <IconButton download="file1.jpg"  onClick={handleImageClick} aria-label="image">
             <ImageRoundedIcon  sx ={{color: "#3BAF00"}} />
           </IconButton>}
-          {!malshab.image && <IconButton disableRipple aria-label="image">
+          {(!malshab.image && !imageBool) && <IconButton disableRipple aria-label="image">
           <ImageNotSupportedRoundedIcon  sx ={{color: "#E02005"}} />
           </IconButton>}
           
@@ -104,7 +118,7 @@ const MalshabCard = ({malshab}) => {
       </Grid>
 
       <Grid item xs={2}>
-        {(malshab.gender==2) && <CardActions>
+        {(malshab.gender==2 || malshab.gender=="female") && <CardActions>
           {malshab.a16 &&<IconButton onClick={handleA16Click} aria-label="a16">
             <Face4RoundedIcon  sx ={{color: "#3BAF00"}}  />
           </IconButton>}
